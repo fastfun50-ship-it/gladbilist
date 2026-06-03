@@ -1,26 +1,405 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+/* ============================================
+   GLADBILIST 2026 – PREMIUM REFRESH
+   Tailwind v4 + shadcn/ui compatible
+   ============================================ */
+
+@custom-variant dark (&:is(.dark *));
+
+/* Brand tokens + shadcn color system in one place */
 :root {
+  /* Surfaces */
   --background: #ffffff;
-  --foreground: #171717;
-}
+  --foreground: #080808;
+  --card: #ffffff;
+  --card-foreground: #080808;
+  --popover: #ffffff;
+  --popover-foreground: #080808;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Brand primary (teal) */
+  --primary: #05C8A1;
+  --primary-foreground: #ffffff;
+  --primary-hover: #04a88a;
+
+  /* Secondary / muted */
+  --secondary: #f8f9fa;
+  --secondary-foreground: #231f20;
+  --muted: #f4f4f5;
+  --muted-foreground: #5f6360;
+
+  /* Accent + UI */
+  --accent: #05C8A1;
+  --accent-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #05C8A1;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  /* Trust blue for variety */
+  --blue: #225087;
+
+  /* Radius */
+  --radius: 0.625rem;
+
+  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Extend Tailwind theme so @apply border-border etc work */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-blue: var(--blue);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+/* Dark */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --card: #111111;
+  --card-foreground: #ededed;
+  --muted: #1f1f1f;
+  --muted-foreground: #a1a1aa;
+  --border: #262626;
+  --input: #262626;
+  --primary: #05C8A1;
+  --primary-foreground: #0a0a0a;
+}
+
+/* --------------------------------------------
+   BASE + TYPOGRAPHY (clean, excellent hierarchy)
+--------------------------------------------- */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    font-feature-settings: "ss01", "ss02", "cv01";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "kern" "tnum" "ss01";
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-medium tracking-[-0.02em];
+  }
+
+  /* Premium readable text */
+  p {
+    @apply text-[15px] leading-relaxed text-muted-foreground;
+  }
+
+  /* Focus styles – elegant teal ring */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary/40 ring-offset-2 ring-offset-background rounded-md;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* --------------------------------------------
+   LAYOUT HELPERS
+--------------------------------------------- */
+@layer components {
+  .section {
+    @apply py-[var(--section-py)] px-6 md:px-8;
+  }
+  .section-sm {
+    @apply py-[var(--section-py-sm)] px-6 md:px-8;
+  }
+  .container {
+    @apply mx-auto max-w-7xl;
+  }
+  .heading-xl {
+    @apply text-5xl md:text-6xl lg:text-7xl font-medium tracking-[-0.04em] leading-[0.96];
+  }
+  .heading-lg {
+    @apply text-4xl md:text-5xl font-medium tracking-[-0.03em];
+  }
+  .heading-md {
+    @apply text-3xl md:text-4xl font-medium tracking-[-0.025em];
+  }
+  .subtle {
+    @apply text-muted-foreground;
+  }
+}
+
+/* --------------------------------------------
+   BRAND BUTTONS (extends shadcn)
+--------------------------------------------- */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-3.5 text-base font-medium text-primary-foreground 
+           transition-all hover:bg-primary-hover active:scale-[0.985] shadow-sm hover:shadow-md;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-foreground/15 bg-white px-8 py-3.5 text-base font-medium 
+           text-foreground transition-all hover:bg-foreground hover:text-white hover:border-foreground active:scale-[0.985];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-foreground/80 
+           transition hover:text-foreground hover:bg-muted;
+  }
+  .btn-phone {
+    @apply inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2 text-sm font-semibold text-white hover:bg-[#111] transition;
+  }
+}
+
+/* --------------------------------------------
+   CARDS & SURFACES (premium feel)
+--------------------------------------------- */
+@layer components {
+  .card {
+    @apply rounded-2xl border border-border bg-card p-8 shadow-sm transition-all hover:shadow-md;
+  }
+  .card-compact {
+    @apply rounded-xl border border-border bg-card p-6;
+  }
+  .price-card {
+    @apply rounded-3xl border border-border bg-white p-8 shadow-sm flex flex-col;
+  }
+  .price-card-featured {
+    @apply rounded-3xl border-2 border-primary bg-white p-8 shadow-xl relative flex flex-col;
+  }
+  .badge {
+    @apply inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary;
+  }
+  .trust-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur px-3 py-1 text-xs font-medium text-foreground/80 border border-white/60;
+  }
+}
+
+/* --------------------------------------------
+   FORMS (clean, high-conversion)
+--------------------------------------------- */
+@layer components {
+  .form-label {
+    @apply text-sm font-medium text-foreground mb-1.5 block;
+  }
+  .form-input,
+  .form-textarea,
+  .form-select {
+    @apply w-full rounded-xl border border-input bg-white px-4 py-3 text-base placeholder:text-muted-foreground 
+           focus:border-primary focus:ring-1 focus:ring-primary/30 transition;
+  }
+  .form-select {
+    @apply appearance-none pr-10;
+  }
+}
+
+/* --------------------------------------------
+   INTERACTIVE BEFORE/AFTER SLIDER
+--------------------------------------------- */
+.before-after {
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  touch-action: pan-y;
+  border-radius: 20px;
+  background: #111;
+}
+
+.before-after img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.before-after .before {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 var(--clip, 50%) 0 0);
+  transition: clip-path 0.05s linear;
+  z-index: 1;
+}
+
+.before-after .after {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.before-after .handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--clip, 50%);
+  width: 3px;
+  background: white;
+  z-index: 10;
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+  pointer-events: none;
+}
+
+.before-after .handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 42px;
+  height: 42px;
+  background: white;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.before-after .handle::before {
+  content: '⟷';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+  z-index: 11;
+  pointer-events: none;
+}
+
+/* Horizontal scroll styles removed (replaced testimonials with ImportantLinks grid) */
+
+/* Drag hint */
+.drag-hint {
+  @apply text-xs text-muted-foreground flex items-center gap-1.5 select-none;
+}
+
+/* --------------------------------------------
+   NAV & SCROLL BEHAVIOR
+--------------------------------------------- */
+.nav-link {
+  @apply relative text-sm font-medium text-foreground/80 transition-colors hover:text-foreground;
+}
+.nav-link.active {
+  @apply text-foreground;
+}
+.nav-link.active:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Lenis smooth scroll support */
+html.lenis {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* Sticky nav */
+.sticky-nav {
+  @apply sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-border/60 transition-all;
+}
+
+/* --------------------------------------------
+   GSAP / SCROLL ANIMATION HELPERS
+--------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.21, 0.92, 0.25, 1), 
+              transform 0.6s cubic-bezier(0.21, 0.92, 0.25, 1);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* Subtle stagger children */
+.stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+/* --------------------------------------------
+   MISC PREMIUM DETAILS
+--------------------------------------------- */
+.goldhold {
+  @apply font-medium text-primary;
+}
+
+.callout {
+  @apply rounded-2xl border-l-4 border-primary bg-primary/5 p-5 text-sm;
+}
+
+.stat {
+  @apply flex flex-col items-center text-center;
+}
+.stat-number {
+  @apply text-4xl md:text-5xl font-semibold tabular-nums tracking-[-1.5px] text-foreground;
+}
+.stat-label {
+  @apply text-xs uppercase tracking-[1px] text-muted-foreground mt-1;
+}
+
+/* PDF links */
+.pdf-link {
+  @apply inline-flex items-center gap-2 text-sm text-blue hover:underline;
+}
+
+/* Footer */
+.footer-link {
+  @apply text-sm text-muted-foreground hover:text-foreground transition-colors;
+}
+
+/* Responsive fine tuning */
+@media (max-width: 768px) {
+  .section {
+    @apply py-12;
+  }
+  .heading-xl {
+    @apply text-[42px] leading-[0.95];
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .stagger > *, .before-after .before {
+    transition: none !important;
+  }
 }
