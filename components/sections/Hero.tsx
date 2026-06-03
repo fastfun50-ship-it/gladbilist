@@ -55,7 +55,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(#ffffff_0.6px,transparent_1px)] bg-[length:5px_5px] opacity-[0.035]" />
       </div>
 
-      <div className="container relative z-10 pt-16 pb-20 md:pt-20">
+      <div className="container relative z-10 pt-16 pb-20 md:pt-20 px-6 md:px-8 lg:px-10">
         <div className="max-w-5xl mx-auto text-center">
           {/* Eyebrow / location */}
           <div className="hero-reveal mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1 text-xs tracking-[2px] backdrop-blur">
@@ -68,7 +68,7 @@ export function Hero() {
           </h1>
 
           {/* Sub */}
-          <p className="hero-reveal mx-auto max-w-2xl text-xl md:text-2xl text-white/90 font-light tracking-tight mb-10">
+          <p className="hero-reveal mx-auto max-w-2xl text-lg sm:text-xl md:text-2xl text-white/90 font-light tracking-tight mb-10">
             {hero.subheadline}
           </p>
 

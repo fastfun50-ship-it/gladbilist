@@ -18,7 +18,7 @@ export function Navbar() {
 
   return (
     <nav className="sticky-nav">
-      <div className="container flex h-20 items-center justify-between">
+      <div className="container flex h-20 items-center justify-between px-6 md:px-8 lg:px-10">
         {/* Logo + Location */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="flex items-center">
@@ -28,9 +28,9 @@ export function Navbar() {
               className="h-9 w-auto"
             />
           </div>
-          <div className="hidden sm:block">
-            <div className="font-semibold tracking-tight text-lg leading-none">Gladbilist</div>
-            <div className="text-[10px] text-muted-foreground -mt-0.5">Mortens Køreskole • {siteConfig.location}</div>
+          <div className="flex flex-col leading-none">
+            <div className="font-semibold tracking-tight text-base sm:text-lg">Gladbilist</div>
+            <div className="text-[10px] sm:text-[11px] text-muted-foreground -mt-0.5">Mortens Køreskole • {siteConfig.location}</div>
           </div>
         </Link>
 
@@ -89,7 +89,7 @@ export function Navbar() {
             transition={{ duration: 0.2 }}
             className="md:hidden border-t bg-white"
           >
-            <div className="container flex flex-col gap-1 py-6 text-base">
+            <div className="container flex flex-col gap-1 py-6 text-base px-6 md:px-8 lg:px-10">
               {siteConfig.nav.map((item) => (
                 <button
                   key={item.href}

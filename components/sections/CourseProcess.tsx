@@ -53,7 +53,7 @@ export function CourseProcess() {
           <h2 className="heading-lg tracking-tight mb-4">
             Sådan bliver du en glad og sikker bilist
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg sm:text-xl text-muted-foreground">
             Et forløb hos Gladbilist er bygget på kvalitet, personlig kontakt og små hold. 
             Mit mål er ikke bare et kørekort – det er at gøre dig til en god og hensynsfuld billist for livet.
           </p>
@@ -65,14 +65,14 @@ export function CourseProcess() {
             return (
               <div 
                 key={index} 
-                className="group rounded-2xl border bg-card p-7 hover:border-primary/30 transition-all flex flex-col"
+                className="group rounded-2xl border bg-card p-5 sm:p-6 hover:border-primary/30 transition-all flex flex-col"
               >
-                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <div className="mb-4 sm:mb-5 inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                   <Icon className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-medium tracking-tight mb-3">{step.title}</h3>
                 <p className="text-[15px] text-muted-foreground leading-relaxed flex-1">
-                  {step.desc}
+                  <span dangerouslySetInnerHTML={{ __html: step.desc.replace(/GULDHOLD/g, '<span class="goldhold">GULDHOLD</span>') }} />
                 </p>
                 <div className="mt-4 text-xs font-medium text-primary/70 tracking-widest">
                   TRIN {index + 1}
@@ -83,7 +83,7 @@ export function CourseProcess() {
         </div>
 
         <div className="mt-10 rounded-2xl bg-[#fafafa] border p-8 text-center">
-          <p className="text-lg font-medium tracking-tight mb-2">
+          <p className="text-base sm:text-lg font-medium tracking-tight mb-2">
             Alt kørsel foregår som udgangspunkt i automatgearbil (kode 148)
           </p>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm">

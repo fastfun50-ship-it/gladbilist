@@ -21,7 +21,7 @@ export function Prices() {
               <div className="text-3xl font-medium tracking-tighter mt-1">{prices.mainPackage.title}</div>
             </div>
             <div className="text-right">
-              <div className="text-5xl font-semibold tabular-nums tracking-[-1.5px] text-primary">{prices.mainPackage.price}</div>
+              <div className="text-4xl sm:text-5xl font-semibold tabular-nums tracking-[-1.5px] text-primary">{prices.mainPackage.price}</div>
               <div className="text-sm text-muted-foreground">{prices.mainPackage.priceNote}</div>
             </div>
           </div>
@@ -56,7 +56,7 @@ export function Prices() {
           {/* Rutine */}
           <div className="price-card">
             <div className="font-semibold tracking-tight mb-1">{prices.rutine.title}</div>
-            <div className="text-3xl font-semibold tabular-nums tracking-tight mb-4">
+            <div className="text-2xl sm:text-3xl font-semibold tabular-nums tracking-tight mb-4">
               {prices.rutine.price} <span className="text-base font-normal text-muted-foreground">{prices.rutine.priceUnit}</span>
             </div>
             <div className="text-sm mb-3 text-muted-foreground">God idé hvis du kan svare ja til ét af følgende:</div>
@@ -69,7 +69,7 @@ export function Prices() {
           <div className="price-card">
             <div className="uppercase text-xs tracking-[1.5px] text-blue font-semibold">TRAILER</div>
             <div className="font-semibold tracking-tight mt-1 mb-1 text-xl">{prices.trailer.title}</div>
-            <div className="text-3xl font-semibold tabular-nums tracking-tight mb-4 text-blue">{prices.trailer.price}</div>
+            <div className="text-2xl sm:text-3xl font-semibold tabular-nums tracking-tight mb-4 text-blue">{prices.trailer.price}</div>
             <p className="text-sm mb-4 text-muted-foreground">{prices.trailer.description}</p>
             <div className="text-sm font-medium mb-1">Inkluderet:</div>
             <ul className="text-sm mb-4 space-y-px">
@@ -82,14 +82,14 @@ export function Prices() {
           <div className="price-card space-y-6">
             <div>
               <div className="font-medium tracking-tight">{prices.special.generhvervelse.title}</div>
-              <div className="text-3xl font-semibold tabular-nums tracking-tighter mt-1">{prices.special.generhvervelse.price}</div>
+              <div className="text-2xl sm:text-3xl font-semibold tabular-nums tracking-tighter mt-1">{prices.special.generhvervelse.price}</div>
               <ul className="mt-3 text-sm text-muted-foreground">
                 {prices.special.generhvervelse.included.map((item, idx) => <li key={idx}>• {item}</li>)}
               </ul>
             </div>
             <div>
               <div className="font-medium tracking-tight text-sm">{prices.special.saerlig.title}</div>
-              <div className="text-2xl font-semibold tabular-nums tracking-tighter mt-1">{prices.special.saerlig.price}</div>
+              <div className="text-xl sm:text-2xl font-semibold tabular-nums tracking-tighter mt-1">{prices.special.saerlig.price}</div>
               <div className="text-xs mt-2 text-muted-foreground">Inkl. indlevering/afhentning på borgerservice + online teori</div>
             </div>
             <div className="text-[11px] pt-2 border-t text-muted-foreground">{prices.special.generhvervelse.note}</div>

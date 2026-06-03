@@ -16,7 +16,7 @@ export function About() {
             <div className="badge mb-4">PERSONLIGT</div>
             <h2 className="heading-lg mb-6 tracking-tight">{about.title}</h2>
 
-            <div className="text-xl font-light text-foreground mb-8">
+            <div className="text-lg sm:text-xl font-light text-foreground mb-8">
               Jeg hedder <span className="font-medium">{about.name}</span>. {about.experience}
             </div>
 

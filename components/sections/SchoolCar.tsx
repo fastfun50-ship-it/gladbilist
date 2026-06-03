@@ -26,7 +26,7 @@ export function SchoolCar() {
           <div>
             <div className="badge mb-3">KØRESKOLENS BILER</div>
             <h2 className="heading-lg mb-2 tracking-tighter">{schoolCar.title}</h2>
-            <p className="text-xl text-muted-foreground mb-8">{schoolCar.subtitle}</p>
+            <p className="text-lg sm:text-xl text-muted-foreground mb-8">{schoolCar.subtitle}</p>
 
             <div className="mb-8">
               <div className="font-semibold text-lg tracking-tight">

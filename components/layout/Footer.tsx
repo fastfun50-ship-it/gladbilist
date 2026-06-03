@@ -7,7 +7,7 @@ export function Footer() {
 
   return (
     <footer className="border-t bg-[#fafafa] text-sm">
-      <div className="container py-16 grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-12">
+      <div className="container py-16 grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-12 px-6 md:px-8 lg:px-10">
         {/* Brand */}
         <div className="md:col-span-5">
           <div className="flex items-center gap-3 mb-4">
@@ -80,7 +80,7 @@ export function Footer() {
       </div>
 
       <div className="border-t">
-        <div className="container py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+        <div className="container py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground px-6 md:px-8 lg:px-10">
           <div>
             © {year} {siteConfig.fullName} – {siteConfig.name}. Alle rettigheder forbeholdt.
           </div>

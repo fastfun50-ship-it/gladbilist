@@ -41,7 +41,7 @@ export function WhyChoose() {
         <div className="max-w-3xl mb-12">
           <div className="badge mb-3">KERNEVÆRDIER</div>
           <h2 className="heading-lg tracking-tight mb-4">Hvorfor vælge mig?</h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg sm:text-xl text-muted-foreground">
             Sikkerhed, personlighed og høj kvalitet er ikke tilvalg – det er fundamentet.
           </p>
         </div>
@@ -49,7 +49,7 @@ export function WhyChoose() {
         {/* Top 4 bullets */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {whyChoose.introBullets.map((bullet, index) => (
-            <div key={index} className="flex items-start gap-3 rounded-2xl border bg-card p-5 text-sm">
+            <div key={index} className="flex items-start gap-3 rounded-2xl border bg-card p-4 sm:p-5 text-sm">
               <div className="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-primary" />
               <span>{bullet}</span>
             </div>
@@ -63,7 +63,7 @@ export function WhyChoose() {
             return (
               <div
                 key={index}
-                className="why-card group rounded-3xl border bg-card p-8 flex flex-col hover:border-primary/30 transition-colors"
+                className="why-card group rounded-3xl border bg-card p-6 sm:p-8 flex flex-col hover:border-primary/30 transition-colors"
               >
                 <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                   <Icon className="h-6 w-6" />
@@ -71,7 +71,7 @@ export function WhyChoose() {
                 <h3 className="text-2xl font-medium tracking-tight mb-4">{sec.title}</h3>
                 <div className="prose prose-neutral text-[15px] text-muted-foreground space-y-4">
                   {sec.text.split("\n\n").map((para, i) => (
-                    <p key={i}>{para}</p>
+                    <p key={i} dangerouslySetInnerHTML={{ __html: para.replace(/GULDHOLD/g, '<span class="goldhold">GULDHOLD</span>') }} />
                   ))}
                 </div>
               </div>
@@ -80,10 +80,10 @@ export function WhyChoose() {
         </div>
 
         {/* Stats bar */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px rounded-3xl bg-border overflow-hidden">
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-px rounded-3xl bg-border overflow-hidden">
           {stats.map((stat, idx) => (
-            <div key={idx} className="stat bg-card py-8">
-              <div className="stat-number text-primary">{stat.number}</div>
+            <div key={idx} className="stat bg-card">
+              <div className={`stat-number text-primary ${stat.number === 'GULDHOLD' ? 'goldhold tracking-normal' : ''}`}>{stat.number}</div>
               <div className="stat-label">{stat.label}</div>
             </div>
           ))}

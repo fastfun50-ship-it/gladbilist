@@ -12,7 +12,7 @@ export function Contact() {
           <div>
             <div className="badge mb-3">DIREKTE KONTAKT</div>
             <h2 className="heading-lg tracking-tighter mb-4">{c.title}</h2>
-            <p className="text-xl text-muted-foreground mb-8">{c.intro}</p>
+            <p className="text-lg sm:text-xl text-muted-foreground mb-8">{c.intro}</p>
 
             <div className="space-y-2 text-lg">
               <a href={siteConfig.phoneHref} className="block font-semibold hover:text-primary transition">{siteConfig.phone}</a>

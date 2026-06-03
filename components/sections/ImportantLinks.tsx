@@ -55,7 +55,7 @@ export function ImportantLinks() {
         <div className="max-w-3xl mb-10">
           <div className="badge mb-3">FORBEREDELSE</div>
           <h2 className="heading-lg tracking-tight mb-3">Vigtige links inden holdstart</h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg sm:text-xl text-muted-foreground">
             Sørg for at have styr på disse ting, før du starter dit forløb. De er afgørende for at kunne komme til prøve.
           </p>
         </div>
@@ -77,9 +77,9 @@ export function ImportantLinks() {
                 href={link.href}
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noopener noreferrer" : undefined}
-                className="group flex gap-4 rounded-2xl border bg-white p-6 hover:border-primary/40 hover:shadow-sm transition-all"
+                className="group flex gap-3 sm:gap-4 rounded-2xl border bg-white p-4 sm:p-6 hover:border-primary/40 hover:shadow-sm transition-all"
               >
-                <div className="mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <div className="mt-1 flex h-8 w-8 sm:h-10 sm:w-10 flex-none items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                   <Icon className="h-5 w-5" />
                 </div>
                 <div>
@@ -108,9 +108,9 @@ export function ImportantLinks() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex gap-4 rounded-2xl border bg-white p-6 hover:border-primary/40 hover:shadow-sm transition-all"
+                  className="group flex gap-3 sm:gap-4 rounded-2xl border bg-white p-4 sm:p-6 hover:border-primary/40 hover:shadow-sm transition-all"
                 >
-                  <div className="mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <div className="mt-1 flex h-8 w-8 sm:h-10 sm:w-10 flex-none items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                     <Icon className="h-5 w-5" />
                   </div>
                   <div>

@@ -192,31 +192,31 @@ export function AudioWelcome() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[60] flex items-center gap-2 rounded-full bg-white/95 backdrop-blur border border-border shadow-xl p-1.5 pr-4">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[60] flex items-center gap-1.5 sm:gap-2 rounded-full bg-white/95 backdrop-blur border border-border shadow-xl p-1 pr-3 sm:p-1.5 sm:pr-4 max-w-[calc(100vw-2rem)]">
       <button
         onClick={togglePlay}
-        className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white hover:bg-primary-hover transition-all active:scale-95"
+        className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-primary text-white hover:bg-primary-hover transition-all active:scale-95 flex-shrink-0"
         aria-label={isPlaying ? audioConfig.pauseLabel : audioConfig.playLabel}
       >
-        {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4 ml-0.5" />}
+        {isPlaying ? <Pause className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> : <Play className="h-3.5 w-3.5 sm:h-4 sm:w-4 ml-0.5" />}
       </button>
 
-      <div className="flex flex-col mr-1 min-w-0">
-        <div className="flex items-center gap-1.5">
-          <span className="text-xs font-semibold text-foreground tracking-tight truncate">
+      <div className="flex flex-col mr-1 min-w-0 flex-1">
+        <div className="flex items-center gap-1 sm:gap-1.5">
+          <span className="text-[10px] sm:text-xs font-semibold text-foreground tracking-tight truncate">
             {currentTrack.title}
           </span>
           {audioConfig.tracks.length > 1 && (
             <>
-              <span className="text-[9px] text-muted-foreground/70">•</span>
-              <div className="flex gap-1 text-[10px] font-medium">
+              <span className="text-[8px] sm:text-[9px] text-muted-foreground/70">•</span>
+              <div className="flex gap-0.5 sm:gap-1 text-[9px] sm:text-[10px] font-medium flex-shrink-0">
                 {audioConfig.tracks.map((track) => {
                   const short = track.id === 'velkomst' ? 'Velkomst' : 'Mødepligt';
                   return (
                     <button
                       key={track.id}
                       onClick={() => switchTrack(track.id)}
-                      className={`px-2 py-0.5 rounded border transition-all ${currentTrackId === track.id 
+                      className={`px-1.5 py-0 sm:px-2 rounded border transition-all ${currentTrackId === track.id 
                         ? 'bg-primary text-white border-primary shadow-sm' 
                         : 'bg-white/80 hover:bg-white border-border text-muted-foreground hover:text-foreground'}`}
                       aria-label={`Skift til ${track.title}`}
@@ -230,26 +230,26 @@ export function AudioWelcome() {
             </>
           )}
         </div>
-        <span className="text-[10px] text-muted-foreground -mt-0.5 leading-none">
-          {isPlaying ? (isMuted ? "Afspiller (klik højttaler for lyd)" : "Afspiller...") : "Klik for at starte med lyd"}
+        <span className="text-[9px] sm:text-[10px] text-muted-foreground -mt-0.5 leading-none truncate">
+          {isPlaying ? (isMuted ? "Afspiller (klik for lyd)" : "Afspiller...") : "Tryk for lyd"}
         </span>
       </div>
 
       <button
         onClick={toggleSound}
-        className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-muted text-muted-foreground hover:text-foreground transition"
+        className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full hover:bg-muted text-muted-foreground hover:text-foreground transition flex-shrink-0"
         aria-label={isMuted ? "Tænd lyd" : "Slå lyd fra"}
         title={isMuted ? "Tænd lyd" : "Slå lyd fra"}
       >
-        {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+        {isMuted ? <VolumeX className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> : <Volume2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />}
       </button>
 
       <button
         onClick={dismiss}
-        className="ml-1 flex h-6 w-6 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition text-xs"
+        className="ml-0.5 sm:ml-1 flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition text-[10px] flex-shrink-0"
         aria-label="Luk"
       >
-        <X className="h-3 w-3" />
+        <X className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
       </button>
     </div>
   );
