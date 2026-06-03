@@ -7,6 +7,7 @@ import { LenisProvider } from "@/components/providers/LenisProvider";
 import { Toaster } from "sonner";
 import { siteConfig } from "@/data/siteConfig";
 import { AudioWelcome } from "@/components/AudioWelcome";
+import { FloatingContact } from "@/components/shared/FloatingContact";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -84,6 +85,9 @@ export default function RootLayout({
 
           {/* Velkomst lyd – forsøger auto-play, viser knap hvis browser blokerer */}
           <AudioWelcome />
+
+          {/* Flydende kontakt (mobil) – altid synlig ring-knap, matcher højfynsspartel.dk oplevelse */}
+          <FloatingContact />
 
           {/* Sonner toast notifications – beautiful & accessible */}
           <Toaster position="top-center" richColors closeButton />

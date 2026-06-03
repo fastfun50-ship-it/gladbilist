@@ -395,6 +395,11 @@ html.lenis {
   .heading-xl {
     @apply text-[42px] leading-[0.95];
   }
+
+  /* Make room for floating contact bar so last content isn't covered */
+  main {
+    padding-bottom: 88px;
+  }
 }
 
 /* Accessibility */
