@@ -369,15 +369,25 @@ export const siteConfig = {
   // KONTAKT
   // ============================================
   contact: {
-    title: "Kontakt",
-    intro: "Har du spørgsmål eller vil du høre mere? Ring eller skriv gerne. Jeg svarer personligt.",
+    title: "Lad os tale sammen",
+    intro: "Har du spørgsmål om kørekort, holdstart eller noget andet? Ring eller skriv gerne – jeg svarer personligt.",
+    phoneLabel: "Telefon",
+    emailLabel: "E-mail",
+    addressLabel: "Adresse",
+    trustItems: [
+      "Personligt svar fra Morten",
+      "Jeg svarer normalt inden for 24 timer på hverdage",
+      "25+ års erfaring – ingen standard-svar",
+    ],
     form: {
       title: "Send en besked",
-      name: "Navn",
-      email: "E-mail",
-      message: "Besked",
-      submit: "Send besked",
-      success: "Tak! Din besked er modtaget. Jeg vender tilbage hurtigst muligt.",
+      name: "NAVN",
+      phone: "TELEFON",
+      email: "E-MAIL",
+      message: "BESKRIV DIN HENVENDELSE",
+      optionalStart: "ØNSKET STARTTIDSPUNKT (valgfrit)",
+      submit: "Send besked — jeg vender tilbage hurtigt",
+      success: "Tak! Din besked er modtaget. Jeg vender tilbage inden for 24 timer på hverdage.",
     },
   },
 

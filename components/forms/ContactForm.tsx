@@ -9,8 +9,9 @@ import { siteConfig } from "@/data/siteConfig";
 import { Button } from "@/components/ui/button";
 
 const contactSchema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
+  name: z.string().min(2, "Skriv dit navn"),
+  phone: z.string().min(8, "Skriv dit telefonnummer"),
+  email: z.string().email("Gyldig e-mail påkrævet"),
   message: z.string().min(10, "Skriv lidt mere i din besked"),
 });
 
@@ -32,27 +33,48 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label className="form-label">Navn</label>
-          <input {...register("name")} className="form-input" />
-          {errors.name && <p className="text-xs text-red-600 mt-1">Skriv dit navn</p>}
+          <label className="block text-xs tracking-[1.5px] text-muted-foreground mb-1.5">{siteConfig.contact.form.name}</label>
+          <input {...register("name")} className="form-input" placeholder="Anders Jensen" />
+          {errors.name && <p className="text-xs text-red-600 mt-1">{errors.name.message}</p>}
         </div>
         <div>
-          <label className="form-label">E-mail</label>
-          <input type="email" {...register("email")} className="form-input" />
-          {errors.email && <p className="text-xs text-red-600 mt-1">Gyldig e-mail påkrævet</p>}
+          <label className="block text-xs tracking-[1.5px] text-muted-foreground mb-1.5">{siteConfig.contact.form.phone}</label>
+          <input type="tel" {...register("phone")} className="form-input" placeholder="40 88 65 65" />
+          {errors.phone && <p className="text-xs text-red-600 mt-1">{errors.phone.message}</p>}
         </div>
       </div>
+
       <div>
-        <label className="form-label">{siteConfig.contact.form.message}</label>
-        <textarea {...register("message")} rows={5} className="form-textarea" placeholder="Hvordan kan jeg hjælpe dig?" />
+        <label className="block text-xs tracking-[1.5px] text-muted-foreground mb-1.5">{siteConfig.contact.form.email}</label>
+        <input type="email" {...register("email")} className="form-input" placeholder="din@email.dk" />
+        {errors.email && <p className="text-xs text-red-600 mt-1">{errors.email.message}</p>}
+      </div>
+
+      <div>
+        <label className="block text-xs tracking-[1.5px] text-muted-foreground mb-1.5">{siteConfig.contact.form.message}</label>
+        <textarea 
+          {...register("message")} 
+          rows={6} 
+          className="form-textarea" 
+          placeholder="F.eks. spørgsmål om holdstart, trailer, eller noget andet..." 
+        />
         {errors.message && <p className="text-xs text-red-600 mt-1">{errors.message.message}</p>}
       </div>
-      <Button type="submit" disabled={isSubmitting} className="w-full rounded-2xl h-12 bg-foreground text-white">
-        {isSubmitting ? "Sender..." : siteConfig.contact.form.submit}
+
+      <Button 
+        type="submit" 
+        disabled={isSubmitting} 
+        className="w-full mt-2 h-14 rounded-2xl bg-primary text-white font-medium text-base hover:bg-primary-hover active:scale-[0.985] transition-all disabled:opacity-70"
+      >
+        {isSubmitting ? "Sender besked..." : siteConfig.contact.form.submit}
       </Button>
+
+      <p className="text-center text-xs text-muted-foreground pt-1">
+        Jeg svarer normalt inden for 24 timer på hverdage. Ingen forpligtelse.
+      </p>
     </form>
   );
 }
