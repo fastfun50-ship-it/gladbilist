@@ -28,6 +28,40 @@ EXPECTED CHANGE SCOPE
 
 After implementing, compare `git diff --stat` with it. If the actual diff goes well outside the declared files/modules: **STOP and reassess** before continuing.
 
+## 2a. Critical User Flow Gate (mandatory)
+
+Full text: STANDARD.md §2a.
+
+- A feature may **not** be marked DONE just because build, lint, typecheck or isolated tests pass.
+- For every change, identify the **affected critical user flows** (list in `/ai/TESTS.md`) and name them in the DONE report.
+- If the change affects a **data chain or a function across modules**, at least **one automated integration/E2E test** must prove the whole chain from input to visible result. Separate unit tests of each part are not enough.
+- If a critical flow cannot be tested automatically, the task is **TEST GAP** with an exact statement of what is not verified - **never DONE**.
+- The repo keeps its list of critical user flows in `/ai/TESTS.md`; a new cross-module flow is added there in the same task.
+
+## 2b. Data Contract Gate (mandatory)
+
+Full text: STANDARD.md §2b.
+
+- When data is produced/imported in one place and consumed in another, the test must verify that **producer and consumer use the same schema and the same data source**.
+- The test feeds data in through the real producer (import/API/form) and asserts on what the consumer actually shows - not on data seeded directly into the consumer.
+- No parallel hard-coded demo/fallback data may hide a broken integration. A consumer that silently shows demo data when the real source is empty or wrong is a failure, not a pass.
+
+## 2c. DONE report (mandatory format)
+
+```
+STATUS: DONE | TEST GAP | NOT COMPLETE
+Changed: <files>
+Critical user flows affected: <flow numbers/names from /ai/TESTS.md, or "none - <why>">
+Flow evidence: <per flow: automated integration/E2E test name + result>
+Data contract: <producer → consumer, same schema/source verified by <test>; or "n/a - <why>">
+Checks run: <command: result>; not run: <list>
+TEST GAP: <exact step(s) of the flow/chain not verified automatically + why; "none">
+Branch / commit / preview: <...>
+Blockers: <real blockers only>
+```
+
+`STATUS: DONE` only when `TEST GAP: none` and every affected critical flow has evidence. Otherwise `TEST GAP` (or `NOT COMPLETE` on regression).
+
 ## 3. Repo-specific rules (evidenced in repo)
 - Edit content only in `data/siteConfig.ts`; no magic strings in UI code (README "Vedligeholdelse").
 - Keep CTAs/contact data as in siteConfig (README "Vigtige CTA'er (uændret fra original)").

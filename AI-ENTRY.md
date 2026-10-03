@@ -15,6 +15,8 @@ Repository: `fastfun50-ship-it/gladbilist` · Central standard: [SYSTEM117 AI De
 
 Before step 6, write the **EXPECTED CHANGE SCOPE** (files/modules, why, must-not-change, checks). If the real diff goes well outside it: stop and reassess.
 Docs and code disagree? **STOP and report** — code is the truth of the implementation, `/ai` is the map.
+**Critical User Flow Gate:** build/lint/typecheck/isolated tests green ≠ DONE. Name the affected critical user flows (`/ai/TESTS.md`). A change to a data chain or a function across modules needs at least one automated integration/E2E test proving the whole chain from input to visible result - otherwise the status is **TEST GAP** (state exactly what is not verified), never DONE.
+**Data Contract Gate:** when data is produced/imported in one place and consumed in another, the test must verify that producer and consumer use the same schema/data source. No parallel hard-coded demo data may hide a broken integration. DONE report format: `/ai/RULES.md` §2c.
 
 ## Repo-specific hard stops
 - All content (texts, prices, dates, links, metadata, JSON-LD) lives **only** in `data/siteConfig.ts` — no hard-coded copy in components (README "Single Source of Truth").
