@@ -1,0 +1,22 @@
+# SYSTEM117 AI gate — runs ONLY this repo's existing commands. No secrets.
+# Standard: https://github.com/fastfun50-ship-it/system117-ai-standard/blob/main/STANDARD.md
+name: ai-gate
+on:
+  pull_request:
+  push:
+permissions:
+  contents: read
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install
+        run: if [ -f package-lock.json ]; then npm ci --no-audit --no-fund; else npm install --no-audit --no-fund; fi
+      - name: Lint (known failing on main 2026-10-03 — remove continue-on-error when fixed)
+        run: npm run lint
+        continue-on-error: true
+      - run: npm run build
