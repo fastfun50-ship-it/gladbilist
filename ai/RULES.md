@@ -54,13 +54,23 @@ Changed: <files>
 Critical user flows affected: <flow numbers/names from /ai/TESTS.md, or "none - <why>">
 Flow evidence: <per flow: automated integration/E2E test name + result>
 Data contract: <producer → consumer, same schema/source verified by <test>; or "n/a - <why>">
+Data sources: <real: source + date/version | synthetic: what + why, clearly marked | on source failure: <loud error shown/logged>; or "n/a - <why>">
 Checks run: <command: result>; not run: <list>
 TEST GAP: <exact step(s) of the flow/chain not verified automatically + why; "none">
 Branch / commit / preview: <...>
 Blockers: <real blockers only>
 ```
 
-`STATUS: DONE` only when `TEST GAP: none` and every affected critical flow has evidence. Otherwise `TEST GAP` (or `NOT COMPLETE` on regression).
+`STATUS: DONE` only when `TEST GAP: none`, every affected critical flow has evidence and data sources are stated (§2d). Otherwise `TEST GAP` (or `NOT COMPLETE` on regression).
+
+## 2d. Data Source Gate (mandatory)
+
+Full text: STANDARD.md §2c.
+
+- Never replace required real/external base data (registers, imports, customer/address/price data, API data) with **synthetic/invented data** to reach a required count, fill a list or get a test/check green.
+- Every task that touches data states clearly **what is real and what is synthetic**, and **which source** was used (file/API/table + date/version).
+- On source failure (missing file, API error, empty or invalid import) the code and the test **fail loudly** with a visible error - **never a silent fallback to invented data**.
+- Synthetic/demo data is allowed only when the task asks for it, is clearly marked as synthetic, and never stands in for data a critical flow or test claims to prove. If real data is unavailable, report **TEST GAP** / blocker instead of faking it.
 
 ## 3. Repo-specific rules (evidenced in repo)
 - Edit content only in `data/siteConfig.ts`; no magic strings in UI code (README "Vedligeholdelse").
